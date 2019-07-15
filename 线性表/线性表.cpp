@@ -34,7 +34,19 @@ status generic_static_list_insert(generic_static_list *L, int *list_len, int ind
 
 
 /***********单链表全局变量********************/
-status generic_dynamic_single_list_insert() {
+status generic_dynamic_single_list_insert(generic_dynamic_single_list *L, generic_dynamic_single_list *node) {
+	L->next = node;
+	node->next = NULL;//尾插法
+	return 0;
+}
 
+status generic_dynamic_single_list_delete(generic_dynamic_single_list *L,element e) {
+	generic_dynamic_single_list *pre_node = L;
+	generic_dynamic_single_list *cur_node = L;
+	for (; L->next != NULL; L = L->next) {
+		if (L->value == e) {
+			L->next = L->next->next;
+		}
+	}
 	return 0;
 }

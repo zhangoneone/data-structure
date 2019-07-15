@@ -1,5 +1,5 @@
 #pragma once
-#include"common.h"
+#include"../公共文件/common.h"
 #define MAX_QUEUE_LEN	100
 typedef element generic_static_queue_load[MAX_QUEUE_LEN];//静态队列
 typedef struct {
