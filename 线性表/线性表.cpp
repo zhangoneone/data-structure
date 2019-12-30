@@ -39,14 +39,16 @@ status generic_dynamic_single_list_insert(generic_dynamic_single_list *L, generi
 	node->next = NULL;//尾插法
 	return 0;
 }
-
+//L是头结点,删除链表中第一个值是e的结点
 status generic_dynamic_single_list_delete(generic_dynamic_single_list *L,element e) {
 	generic_dynamic_single_list *pre_node = L;
-	generic_dynamic_single_list *cur_node = L;
-	for (; L->next != NULL; L = L->next) {
-		if (L->value == e) {
-			L->next = L->next->next;
+	generic_dynamic_single_list *cur_node = L->next;
+	for (; cur_node != NULL; pre_node=cur_node,cur_node = cur_node->next) {
+		if (cur_node->value == e) {
+			pre_node->next = cur_node->next;
+			free(cur_node);
+			return 0;
 		}
 	}
-	return 0;
+	return -1;
 }
